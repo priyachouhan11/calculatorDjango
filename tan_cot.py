@@ -1,73 +1,88 @@
+# Helper function to calculate factorial
 def factorial(n):
-    if n == 0:
-        return 1
-    else:
-        return n * factorial(n - 1)
+    fact = 1
+    for i in range(1, n + 1):
+        fact *= i
+    return fact
 
-def sin(x, terms=10):
-    result = 0
-    for n in range(terms):
-        sign = 1 if (n % 2 == 0) else -1
-        result += ((x ** (2 * n + 1)) / factorial(2 * n + 1)) * sign
-    return abs(result)
+# Function to approximate sine using the Taylor series expansion 
+def sine(x):
+    sin_value = 0
+    for n in range(10):  # Taylor series up to 10 terms
+        term = ((-1)**n * x**(2*n + 1)) / factorial(2*n + 1)
+        sin_value += term
+    return sin_value
 
-def cos(x, terms=10):
-    result = 0
-    for n in range(terms):
-        sign = 1 if (n % 2 == 0) else -1
-        result += ((x ** (2 * n)) / factorial(2 * n)) * sign
-    return abs(result)
+# Function to approximate cosine using the Taylor series expansion
+def cosine(x):
+    cos_value = 0
+    for n in range(10):  # Taylor series up to 10 terms
+        term = ((-1)**n * x**(2*n)) / factorial(2*n)
+        cos_value += term
+    return cos_value
 
-def tan(angle_degrees, terms=10):
-    angle_radians = (angle_degrees * 3.14159265358979323846) / 180
-    sin_value = sin(angle_radians, terms)
-    cos_value = cos(angle_radians, terms)
-    if abs(cos_value) < 1e-10:
-        raise ValueError("Cosine is too close to zero, tan is undefined")
-    return abs(sin_value / cos_value)
+# Function to calculate tangent (sin(x) / cos(x))
+def tangent(x):
+    return sine(x) / cosine(x)
 
-def cot(angle_degrees, terms=10):
-    angle_radians = (angle_degrees * 3.14159265358979323846) / 180
-    sin_value = sin(angle_radians, terms)
-    cos_value = cos(angle_radians, terms)
-    if abs(sin_value) < 1e-10:
-        raise ValueError("Sine is too close to zero, cot is undefined")
-    return abs(cos_value / sin_value)
+# Function to calculate cotangent (1 / tangent(x))
+def cotangent(x):
+    return 1 / tangent(x)
 
-# Main program loop
-while True:
+# Function to calculate secant (1 / cos(x))
+def secant(x):
+    return 1 / cosine(x)
+
+# Function to calculate cosecant (1 / sin(x))
+def cosecant(x):
+    return 1 / sine(x)
+
+# Function to convert degrees to radians
+def degrees_to_radians(degrees):
+    pi = 22 / 7
+    radians = (degrees * pi) / 180
+    return radians
+
+# Display Menu
+def display_menu():
     print("\nScientific Calculator - Trigonometric Functions")
-    print("1. Calculate Sin")
-    print("2. Calculate Cos")
-    print("3. Calculate Tan")
-    print("4. Calculate Cot")
-    print("5. Exit")
-    
-    choice = input("Enter your choice (1/2/3/4/5): ")
-    
-    if choice == '5':
-        print("Exiting the calculator. Goodbye!")
-        break
-    
-    if choice in ['1', '2', '3', '4']:
-        angle = float(input("Enter the angle in degrees: "))
-        terms = int(input("Enter the number of terms for approximation (default is 10): ") or 10)
-        
-        try:
-            angle_radians = (angle * 3.14159265358979323846) / 180
+    print("1. Sine (sin)")
+    print("2. Cosine (cos)")
+    print("3. Tangent (tan)")
+    print("4. Cotangent (cot)")
+    print("5. Secant (sec)")
+    print("6. Cosecant (cosec)")
+    print("7. Exit")
+
+# Main Calculator Function
+def scientific_calculator():
+    while True:
+        display_menu()
+        choice = input("Enter your choice (1-7): ")
+
+        if choice in ['1', '2', '3', '4', '5', '6']:
+            degrees = float(input("Enter angle in degrees: "))
+            radians = degrees_to_radians(degrees)
+
             if choice == '1':
-                result = sin(angle_radians, terms)
-                print(f"sin({angle}) ≈ {result}")
+                print(f"sin({degrees}°) = {sine(radians):.6f}")
             elif choice == '2':
-                result = cos(angle_radians, terms)
-                print(f"cos({angle}) ≈ {result}")
+                print(f"cos({degrees}°) = {cosine(radians):.6f}")
             elif choice == '3':
-                result = tan(angle, terms)
-                print(f"tan({angle}) ≈ {result}")
-            else:
-                result = cot(angle, terms)
-                print(f"cot({angle}) ≈ {result}")
-        except ValueError as e:
-            print(f"Error: {e}")
-    else:
-        print("Invalid choice. Please enter 1, 2, 3, 4, or 5.")
+                print(f"tan({degrees}°) = {tangent(radians):.6f}")
+            elif choice == '4':
+                print(f"cot({degrees}°) = {cotangent(radians):.6f}")
+            elif choice == '5':
+                print(f"sec({degrees}°) = {secant(radians):.6f}")
+            elif choice == '6':
+                print(f"cosec({degrees}°) = {cosecant(radians):.6f}")
+        
+        elif choice == '7':
+            print("Exiting calculator. Goodbye!")
+            break
+        
+        else:
+            print("Invalid choice! Please select a valid option.\n")
+
+# Run the calculator
+scientific_calculator()
