@@ -1,0 +1,100 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+.container{
+    height: 100vh;
+    width: 100vw;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 90%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: hidden;
+}
+.calculator{
+    height: 700px;
+    width: 1050px;
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+}
+.form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+form{
+    height: 100px;
+    width: 90%;
+    margin-top: 30px;
+}
+input{
+    text-align: right;
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(59, 59, 59, 0.541);
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    font-size: 60px;
+    color: white;
+}
+input:focus{
+    outline: none;
+}
+input::placeholder{
+    color: rgba(255, 255, 255, 0.36);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.button-section{
+    height:560px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 5px;
+}
+.row{
+    height: 70px;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+button{
+    background-color: rgba(59, 59, 59, 0.396);
+    width: 85px;
+    height: 70px;
+    color: white;
+    border:none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: large;
+}
+button i{
+    font-size: 25px;
+}
+.equal{
+    background-color: rgb(238, 143, 0);
+    font-size: 30px;
+}
+.Arithemetic{
+    font-size: 30px;
+}
+.num{
+    font-size: 30px;
+}

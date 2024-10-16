@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>Calculator - UI</title>
+    <link rel="stylesheet" href="calculator.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Form-Section -->
+      <div class="calculator">
+
+        <div class="form">
+          <form>
+            <input type="text" placeholder="0" id="display" readonly>
+          </form>
+        </div>
+
+        <!-- Button-Section -->
+        <div class="button-section">
+          <!-- Row-1 -->
+          <div class="row">
+            <button onclick="appendToDisplay('Sin')">Sin</button>
+            <button onclick="appendToDisplay('Cos')">Cos</button>
+            <button onclick="appendToDisplay('Tan')">Tan</button>
+            <button onclick="appendToDisplay('Cosec')">Cosec</button>
+            <button onclick="appendToDisplay('Sec')">Sec</button>
+            <button onclick="appendToDisplay('Cot')">Cot</button>
+          </div>
+          <!-- Row-2 -->
+          <div class="row">
+            <button onclick="appendToDisplay('Log')">Log</button>
+            <button onclick="appendToDisplay('(')">(</button>
+            <button onclick="appendToDisplay(')')">)</button>
+            <button class="num" onclick="appendToDisplay('2^')"><p>2<sup>x</sup></p></button>
+            <button onclick="appendToDisplay('(')">Exp</button>
+            <button onclick="appendToDisplay('(')">Equ</button>
+          </div>
+          <!-- Row-3 -->
+          <div class="row">
+            <button onclick="appendToDisplay('abs(')">| X |</button>
+            <button class="Arithemetic" onclick="appendToDisplay('!')">!</button>
+            <button onclick="clearDisplay()">AC</button>
+            <button onclick="removeLastElement()">DEL</button>
+            <button class="Arithemetic" onclick="appendToDisplay('%')">%</button>
+            <button class="Arithemetic" onclick="appendToDisplay('÷')">/</button>
+          </div>
+          <!-- Row-4 -->
+          <div class="row">
+            <!-- <p>X<sup>y</sup></p> -->
+            <button onclick="appendToDisplay('^')"> ^ </button>
+            <button onclick="appendToDisplay('1/')">1/X</button>
+            <button class="num" onclick="appendToDisplay('7')">7</button>
+            <button class="num" onclick="appendToDisplay('8')">8</button>
+            <button class="num" onclick="appendToDisplay('9')">9</button>
+            <button class="Arithemetic" onclick="appendToDisplay('x')">*</button>
+          </div>
+          <!-- Row-5 -->
+          <div class="row">
+            <button onclick="appendToDisplay('∛')">∛X</button>
+            <button onclick="appendToDisplay('^3')"><p>X<sup>3</sup></p></button>
+            <button class="num" onclick="appendToDisplay('4')">4</button>
+            <button class="num" onclick="appendToDisplay('5')">5</button>
+            <button class="num" onclick="appendToDisplay('6')">6</button>
+            <button class="Arithemetic" onclick="appendToDisplay('-')">-</button>
+          </div>
+          <!-- Row-6 -->
+          <div class="row">
+            <button onclick="appendToDisplay('√')">√X</button>
+            <button onclick="appendToDisplay('^2')"><p>X<sup>2</sup></p></button>
+            <button class="num" onclick="appendToDisplay('1')">1</button>
+            <button class="num" onclick="appendToDisplay('2')">2</button>
+            <button class="num" onclick="appendToDisplay('3')">3</button>
+            <button class="Arithemetic" onclick="appendToDisplay('+')">+</button>
+          </div>
+          <!-- Row-7 -->
+          <div class="row">
+            <button class="num" onclick="appendToDisplay('e^')"><p>e<sup>x</sup></p></button>
+            <button class="num" onclick="appendToDisplay('𝛑')">𝛑</button>
+            <button class="num" onclick="appendToDisplay('00')">00</button>
+            <button class="num" onclick="appendToDisplay('0')">0</button>
+            <button class="num" onclick="appendToDisplay('.')">.</button>
+            <button class="equal" onclick="calculate()">=</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
