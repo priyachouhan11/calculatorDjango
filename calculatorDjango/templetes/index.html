@@ -20,77 +20,138 @@
       <div class="calculator">
 
         <div class="form">
-          <form>
+          <!-- <form>
             <input type="text" placeholder="0" id="display" readonly>
-          </form>
-        </div>
+          </form> -->
+          <!-- <br> -->
 
-        <!-- Button-Section -->
-        <div class="button-section">
-          <!-- Row-1 -->
-          <div class="row">
-            <button onclick="appendToDisplay('Sin')">Sin</button>
-            <button onclick="appendToDisplay('Cos')">Cos</button>
-            <button onclick="appendToDisplay('Tan')">Tan</button>
-            <button onclick="appendToDisplay('Cosec')">Cosec</button>
-            <button onclick="appendToDisplay('Sec')">Sec</button>
-            <button onclick="appendToDisplay('Cot')">Cot</button>
-          </div>
-          <!-- Row-2 -->
-          <div class="row">
-            <button onclick="appendToDisplay('Log')">Log</button>
-            <button onclick="appendToDisplay('(')">(</button>
-            <button onclick="appendToDisplay(')')">)</button>
-            <button class="num" onclick="appendToDisplay('2^')"><p>2<sup>x</sup></p></button>
-            <button onclick="appendToDisplay('(')">Exp</button>
-            <button onclick="appendToDisplay('(')">Equ</button>
-          </div>
-          <!-- Row-3 -->
-          <div class="row">
-            <button onclick="appendToDisplay('abs(')">| X |</button>
-            <button class="Arithemetic" onclick="appendToDisplay('!')">!</button>
-            <button onclick="clearDisplay()">AC</button>
-            <button onclick="removeLastElement()">DEL</button>
-            <button class="Arithemetic" onclick="appendToDisplay('%')">%</button>
-            <button class="Arithemetic" onclick="appendToDisplay('÷')">/</button>
-          </div>
-          <!-- Row-4 -->
-          <div class="row">
-            <!-- <p>X<sup>y</sup></p> -->
-            <button onclick="appendToDisplay('^')"> ^ </button>
-            <button onclick="appendToDisplay('1/')">1/X</button>
-            <button class="num" onclick="appendToDisplay('7')">7</button>
-            <button class="num" onclick="appendToDisplay('8')">8</button>
-            <button class="num" onclick="appendToDisplay('9')">9</button>
-            <button class="Arithemetic" onclick="appendToDisplay('x')">*</button>
-          </div>
-          <!-- Row-5 -->
-          <div class="row">
-            <button onclick="appendToDisplay('∛')">∛X</button>
-            <button onclick="appendToDisplay('^3')"><p>X<sup>3</sup></p></button>
-            <button class="num" onclick="appendToDisplay('4')">4</button>
-            <button class="num" onclick="appendToDisplay('5')">5</button>
-            <button class="num" onclick="appendToDisplay('6')">6</button>
-            <button class="Arithemetic" onclick="appendToDisplay('-')">-</button>
-          </div>
-          <!-- Row-6 -->
-          <div class="row">
-            <button onclick="appendToDisplay('√')">√X</button>
-            <button onclick="appendToDisplay('^2')"><p>X<sup>2</sup></p></button>
-            <button class="num" onclick="appendToDisplay('1')">1</button>
-            <button class="num" onclick="appendToDisplay('2')">2</button>
-            <button class="num" onclick="appendToDisplay('3')">3</button>
-            <button class="Arithemetic" onclick="appendToDisplay('+')">+</button>
-          </div>
-          <!-- Row-7 -->
-          <div class="row">
-            <button class="num" onclick="appendToDisplay('e^')"><p>e<sup>x</sup></p></button>
-            <button class="num" onclick="appendToDisplay('𝛑')">𝛑</button>
-            <button class="num" onclick="appendToDisplay('00')">00</button>
-            <button class="num" onclick="appendToDisplay('0')">0</button>
-            <button class="num" onclick="appendToDisplay('.')">.</button>
-            <button class="equal" onclick="calculate()">=</button>
-          </div>
+
+          <form action="{% url 'index' %}" method="post">
+            {% csrf_token %}
+
+            <input type="text" placeholder="0" name="display"value="{{ display }}" readonly>
+
+            <!-- Button-Section -->
+            <div class="button-section">
+              <!-- Row-1 -->
+              <div class="row">
+                <button type="submit" name="action" value="sine">Sin</button>
+                <button type="submit" name="action" value="cosine">Cos</button>
+                <button type="submit" name="action" value="tangent">Tan</button>
+                <button type="submit" name="action" value="cosecant">Cosec</button>
+                <button type="submit" name="action" value="secant">Sec</button>
+                <button type="submit" name="action" value="cotangent">Cot</button>
+
+
+                <!-- <button onclick="appendToDisplay('Cos')">Cos</button>
+                <button onclick="appendToDisplay('Tan')">Tan</button>
+                <button onclick="appendToDisplay('Cosec')">Cosec</button>
+                <button onclick="appendToDisplay('Sec')">Sec</button>
+                <button onclick="appendToDisplay('Cot')">Cot</button> -->
+              </div>
+              <!-- Row-2 -->
+              <div class="row">
+                <button type="submit" name="action" value="log">log</button>
+                <button onclick="appendToDisplay('(')">(</button>
+                <button onclick="appendToDisplay(')')">)</button>
+                <button class="num" name="action" value="power_of_2"><p>2<sup>x</sup></p></button>
+                <button type="submit" name="action" value="Exp">Exp</button>
+                <button type="submit" name="action" value="Equ">Equ</button>
+
+                <!-- <button onclick="appendToDisplay('Log')">Log</button>
+                <button onclick="appendToDisplay('(')">(</button>
+                <button onclick="appendToDisplay(')')">)</button>
+                <button class="num" onclick="appendToDisplay('2^')"><p>2<sup>x</sup></p></button>
+                <button onclick="appendToDisplay('(')">Exp</button>
+                <button onclick="appendToDisplay('(')">Equ</button> -->
+              </div>
+              <!-- Row-3 -->
+              <div class="row">
+                <button class="num" type="submit" name="action" value="|X|">|X|</button>
+                <button class="num" type="submit" name="action" value="factorial">!</button>
+                <button class="num" type="submit" name="action" value="AC">AC</button>
+                <button class="num" type="submit" name="action" value="DEL">DEL</button>
+                <button class="num" type="submit" name="action" value="%">%</button>
+                <button class="Arithemetic" type="submit" name="action" value="/">/</button>
+
+                <!-- <button onclick="appendToDisplay('abs(')">| X |</button>
+                <button class="Arithemetic" onclick="appendToDisplay('!')">!</button>
+                <button onclick="clearDisplay()">AC</button>
+                <button onclick="removeLastElement()">DEL</button>
+                <button class="Arithemetic" onclick="appendToDisplay('%')">%</button>
+                <button class="Arithemetic" onclick="appendToDisplay('÷')">/</button> -->
+              </div>
+              <!-- Row-4 -->
+              <div class="row">
+                <button class="num" type="submit" name="action" value=" ^ "> ^ </button>
+                <button class="num" type="submit" name="action" value="1/X">1/X</button>
+                <button class="num" type="submit" name="action" value="7">7</button>
+                <button class="num" type="submit" name="action" value="8">8</button>
+                <button class="num" type="submit" name="action" value="9">9</button>
+                <button class="Arithemetic" type="submit" name="action" value="*">*</button>
+
+
+    
+                <!-- <p>X<sup>y</sup></p> -->
+                <!-- <button onclick="appendToDisplay('^')"> ^ </button>
+                <button onclick="appendToDisplay('1/')">1/X</button>
+                <button class="num" onclick="appendToDisplay('7')">7</button>
+                <button class="num" onclick="appendToDisplay('8')">8</button>
+                <button class="num" onclick="appendToDisplay('9')">9</button>
+                <button class="Arithemetic" onclick="appendToDisplay('x')">*</button> -->
+              </div>
+              <!-- Row-5 -->
+              <div class="row">
+                <button class="num" type="submit" name="action" value="cube"><p>X<sup>3</sup></p></button>
+                <button class="num" type="submit" name="action" value="cube_root">∛X</button>
+                <button class="num" type="submit" name="action" value="4">4</button>
+                <button class="num" type="submit" name="action" value="5">5</button>
+                <button class="num" type="submit" name="action" value="6">6</button>
+                <button class="Arithemetic" type="submit" name="action" value="-">-</button>
+
+                <!-- <button onclick="appendToDisplay('∛')">∛X</button>
+                <button onclick="appendToDisplay('^3')"><p>X<sup>3</sup></p></button>
+                <button class="num" onclick="appendToDisplay('4')">4</button>
+                <button class="num" onclick="appendToDisplay('5')">5</button>
+                <button class="num" onclick="appendToDisplay('6')">6</button>
+                <button class="Arithemetic" onclick="appendToDisplay('-')">-</button> -->
+              </div>
+              <!-- Row-6 -->
+              <div class="row">
+                <button class="num" type="submit" name="action" value="√">√X</button>
+                <button class="num" type="submit" name="action" value="square"><p>X<sup>2</sup></p></button>
+                <button class="num" type="submit" name="action" value="1">1</button>
+                <button class="num" type="submit" name="action" value="2">2</button>
+                <button class="num" type="submit" name="action" value="3">3</button>
+                <button class="Arithemetic" type="submit" name="action" value="+">+</button>
+
+                <!-- <button onclick="appendToDisplay('√')">√X</button>
+                <button onclick="appendToDisplay('^2')"><p>X<sup>2</sup></p></button>
+                <button class="num" onclick="appendToDisplay('1')">1</button>
+                <button class="num" onclick="appendToDisplay('2')" name="action" value="2">2</button>
+                <button class="num" onclick="appendToDisplay('3')">3</button>
+                <button class="Arithemetic" onclick="appendToDisplay('+')">+</button> -->
+              </div>
+              <!-- Row-7 -->
+              <div class="row">
+                <button class="num" type="submit" name="action" value="e^"><p>e<sup>x</sup></p></button>
+                <button class="num" type="submit" name="action" value="𝛑">𝛑</button> <!-- Intentionally left empty for now -->
+                <button class="num" type="submit" name="action" value="00">00</button>
+                <button class="num" type="submit" name="action" value="0">0</button>
+                <button class="num" type="submit" name="action" value=".">.</button>
+                <button class="equal" type="submit" name="action" value="=">=</button>
+
+                <!-- <button class="num" onclick="appendToDisplay('e^')"><p>e<sup>x</sup></p></button>
+                <button class="num" onclick="appendToDisplay('𝛑')">𝛑</button>
+                <button class="num" onclick="appendToDisplay('00')">00</button>
+                <button class="num" onclick="appendToDisplay('0')">0</button>
+                <button class="num" onclick="appendToDisplay('.')">.</button>
+                <button class="equal" onclick="calculate()">=</button> -->
+              </div>
+            </div>
+
+          </form>
+
         </div>
 
       </div>

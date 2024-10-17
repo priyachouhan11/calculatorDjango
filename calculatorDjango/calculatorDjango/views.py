@@ -1,114 +1,134 @@
+# views.py
+
 from django.shortcuts import render
+from .Calculator import (
+    cube_root, factorial, calculate_percentage, find_hcf, log, power_of_x, square, cube,
+    power_of_2, exponential, sine, cosine, tangent, cotangent, secant, cosecant, degrees_to_radians
+)
 
 def index(request):
-   return render(request,'index.html')
-# def index(request):
-#   if request.method == 'POST':
-#      action = request.POST.get('action')
-#      display = request.POST.get('display','')
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        display = request.POST.get('display', '')
 
-#      if action == 'AC':
-#         display = ''
-#      elif action == '=':
-#         try:
-#            display = str(eval(display))
-#         except:
-#            display = 'Error'
-#      else:
-#         display += action
-#      return render(request,'index.html',{'display':display})               
-#   return render(request,'index.html',{'display':''})
+        action = str(action) if action else ''
+        display = str(display) if display else ''
 
-# def CubeRoot(num):
-#     res = pow(num,1/3)
-#     return res
+        if action == 'AC':
+            display = ''
+        elif action == '𝛑':
+            display = '3.14159265359'    
+        elif action == '=':
+            try:
+                display = str(eval(display, {"__builtins__": None}, {}))
+            except Exception as e:
+                display = f'Error: {e}'
+        else:
+            display += action
 
-class Calculator:
+        if 'cube_root' in display:
+            try:
+                number = display.replace('cube_root', '').strip()
+                display = str(cube_root(eval(number)))
+            except ValueError as e:
+                display = f'Error: {e}'
 
-  def CubeRoot(num):
-    res = pow(num,1/3)
-    return res
+        elif 'factorial' in display:
+            try:
+                number = display.replace('factorial', '').strip()
+                display = str(factorial(int(number)))
+            except (ValueError) as e:
+                display = f'Error: {e}'
 
-  def factorial(n):
-    fact = 1
-    for i in range(1, n + 1):
-        fact *= i
-    return fact
+        elif 'square' in display:
+            try:
+                number = display.replace('square', '').strip()
+                display = str(square(int(number)))
+            except (ValueError) as e:
+                display = f'Error: {e}' 
 
-  def calculate_percentage(score, total):
-    percentage = (score / total) * 100
-    return percentage
+        elif 'power_of_2' in display:
+            try:
+                number = display.replace('power_of_2', '').strip()
+                display = str(power_of_2(int(number)))
+            except (ValueError) as e:
+                display = f'Error: {e}'        
 
-  def find_hcf(x,y):
-    if (x < y):
-        smaller=x
-    else:
-        smaller = y
-    hcf=0
-    for i in range(1,smaller+1):
-        if((x%i==0)and(y%i==0)):
-            hcf = i
-    return hcf
+        elif 'cube' in display:
+            try:
+                number = display.replace('cube', '').strip()
+                display = str(cube(int(number)))
+            except (ValueError) as e:
+                display = f'Error: {e}'
 
-  def log(base, value):
-    result = 0
-    while value > 1:
-        value /= base
-        result += 1
-    return result
+        elif 'sine' in display:
+            try:
+                number = display.replace('sine', '').strip()
+                display = str(sine(float(number)))
+            except (ValueError) as e:
+                display = f'Error: {e}'  
 
-  def power_of_x(x,y):
-    n1 = x**y
-    return n1
+        elif 'cosine' in display:
+            try:
+                number = display.replace('cosine', '').strip()
+                display = str(cosine(float(number)))
+            except (ValueError) as e:
+                display = f'Error: {e}' 
 
-  def square(s):
-    sq = s**2
-    return sq
+        elif 'tangent' in display:
+            try:
+                number = display.replace('tangent', '').strip()
+                display = str(tangent(float(number)))
+            except (ValueError) as e:
+                display = f'Error: {e}' 
 
-  def cube(c):
-    cu = c**3
-    return cu
+        elif 'cotangent' in display:
+            try:
+                number = display.replace('cotangent', '').strip()
+                display = str(cotangent(float(number)))
+            except (ValueError) as e:
+                display = f'Error: {e}' 
 
-  def power_of_2(x):
-    a = 2**x
-    return a
+        elif 'cosecant' in display:
+            try:
+                number = display.replace('cosecant', '').strip()
+                display = str(cosecant(float(number)))
+            except (ValueError) as e:
+                display = f'Error: {e}' 
 
-  def exponential(x, terms=10):
-    result = 0
-    for n in range(terms):
-        result += (x ** n) / factorial(n)
-    return result
+        elif 'secant' in display:
+            try:
+                number = display.replace('secant', '').strip()
+                display = str(secant(float(number)))
+            except (ValueError) as e:
+                display = f'Error: {e}'         
 
-  def sine(x):
-    sin_value = 0 
-    for n in range(10):
-        term = ((-1)**n * x**(2*n + 1)) / factorial(2*n + 1)
-        sin_value += term
-    return sin_value
+        elif 'calculate_percentage' in display:
+            try:
+                numbers = display.replace('calculate_percentage', '').strip().split('%')
+                if len(numbers) == 2:
+                    score = float(numbers[0])
+                    total = float(numbers[1])
+                    display = str(calculate_percentage(int(score, total)))
+                else:
+                    display = "Error: Invalid input for percentage"
+            except (ValueError, IndexError) as e:
+                display = f'Error: {e}'
 
-  def cosine(x):
-    cos_value = 0
-    for n in range(10):  
-        term = ((-1)**n * x**(2*n)) / factorial(2*n)
-        cos_value += term
-    return cos_value
+        elif 'log' in display:
+            try:
+                number = display.replace('log','').strip().split('log')
+                if len(number) == 2:
+                  base = int(number[0])
+                  value = int(number[1])
+                  display = str(log(float(base,value)))     
+                else:
+                    display = 'Error'
+            except (ValueError,IndexError) as e:
+                display = f'Error: {e}'            
 
-  def tangent(x):
-    return sine(x) / cosine(x)
+        return render(request, 'index.html', {'display': display})
 
-  def cotangent(x):
-    return 1 / tangent(x)
+    return render(request, 'index.html', {'display': ''})
 
-  def secant(x):
-    return 1 / cosine(x)
 
-  def cosecant(x):
-    return 1 / sine(x)
-
-  def degrees_to_radians(degrees):
-    pi = 3.14159265359  
-    degrees = degrees % 360
-    if degrees < 0:
-        degrees += 360
-    radians = (degrees * pi) / 180
-    return radians
