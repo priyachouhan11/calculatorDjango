@@ -46,9 +46,9 @@ def power_of_2(x):
     a = 2**x
     return a
 
-def exponential(x, terms=10):
+def exponential(x):
     result = 0
-    for n in range(terms):
+    for n in range(10):
         result += (x ** n) / factorial(n)
     return result
 
