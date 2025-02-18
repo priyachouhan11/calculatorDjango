@@ -23,12 +23,18 @@ def find_hcf(x,y):
             hcf = i
     return hcf
 
-def log(base, value):
-    result = 0
-    while value > 1:
-        value /= base
-        result += 1
-    return result
+def log(value, base=10, precision=1e-10):
+    if value <= 0:
+        raise ValueError("logarithm only defined for positive numbers")
+    low = 0
+    high = value
+    while high - low > precision:
+        mid = (low + high) / 2
+        if base ** mid < value:
+            low = mid
+        else:
+            high = mid
+    return (low + high) /2
 
 def power_of_x(x,y):
     n1 = x**y
@@ -51,6 +57,27 @@ def exponential(x, terms=10):
     for n in range(terms):
         result += (x ** n) / factorial(n)
     return result
+
+def abs_fun(x):
+    return abs(x)
+
+
+# def calculate_mod(request):
+#     if request.method == "POST":
+#         input_text = request.POST.get("expression", "").strip()
+
+#         try:
+#             parts = input_text.split()
+#             if len(parts) == 3 and parts[1].lower() == "mod":
+#                 num1 = int(parts[0])
+#                 num2 = int(parts[2])
+#                 result = num1 % num2
+#                 return JsonResponse({"result": result})
+#             else:
+#                 return JsonResponse({"error": "Incorrect input format for mod operation"})
+#         except ValueError:
+#             return JsonResponse({"error": "Invalid numbers"})
+
 
 def sine(x):
     sin_value = 0 

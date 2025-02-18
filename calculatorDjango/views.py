@@ -1,8 +1,7 @@
 # views.py
-
 from django.shortcuts import render
 from .Calculator import (
-    cube_root, factorial, calculate_percentage, find_hcf, log, power_of_x, square, cube,
+    abs_fun, cube_root, factorial, calculate_percentage, find_hcf, log, power_of_x, square, cube,
     power_of_2, exponential, sine, cosine, tangent, cotangent, secant, cosecant, degrees_to_radians
 )
 
@@ -25,6 +24,10 @@ def index(request):
                 display = f'Error: {e}'
         else:
             display += action
+
+        
+        # if 'e^' in display:
+            
 
         if 'cube_root' in display:
             try:
@@ -68,9 +71,9 @@ def index(request):
             except (ValueError) as e:
                 display = f'Error: {e}'  
 
-        elif 'cosine' in display:
+        elif 'cos' in display:
             try:
-                number = display.replace('cosine', '').strip()
+                number = display.replace('cos', '').strip()
                 display = str(cosine(float(number)))
             except (ValueError) as e:
                 display = f'Error: {e}' 
@@ -82,16 +85,16 @@ def index(request):
             except (ValueError) as e:
                 display = f'Error: {e}' 
 
-        elif 'cotangent' in display:
+        elif 'cot' in display:
             try:
-                number = display.replace('cotangent', '').strip()
+                number = display.replace('cot', '').strip()
                 display = str(cotangent(float(number)))
             except (ValueError) as e:
                 display = f'Error: {e}' 
 
-        elif 'cosecant' in display:
+        elif 'cosec' in display:
             try:
-                number = display.replace('cosecant', '').strip()
+                number = display.replace('cosec', '').strip()
                 display = str(cosecant(float(number)))
             except (ValueError) as e:
                 display = f'Error: {e}' 
@@ -101,31 +104,28 @@ def index(request):
                 number = display.replace('secant', '').strip()
                 display = str(secant(float(number)))
             except (ValueError) as e:
-                display = f'Error: {e}'         
-
-        elif 'calculate_percentage' in display:
-            try:
-                numbers = display.replace('calculate_percentage', '').strip().split('%')
-                if len(numbers) == 2:
-                    score = float(numbers[0])
-                    total = float(numbers[1])
-                    display = str(calculate_percentage(int(score, total)))
-                else:
-                    display = "Error: Invalid input for percentage"
-            except (ValueError, IndexError) as e:
-                display = f'Error: {e}'
+                display = f'Error: {e}'  
 
         elif 'log' in display:
             try:
-                number = display.replace('log','').strip().split('log')
-                if len(number) == 2:
-                  base = int(number[0])
-                  value = int(number[1])
-                  display = str(log(float(base,value)))     
-                else:
-                    display = 'Error'
-            except (ValueError,IndexError) as e:
-                display = f'Error: {e}'            
+                number = display.replace('log','').strip()
+                display = str(log(float(number)))
+            except (ValueError) as e:
+                display = f'Error:{e}'     
+
+        elif 'exp' in display:
+            try:
+                number = display.replace('exp','').strip()
+                display = str(exponential(float(number)))
+            except ValueError as e:
+                display = f'Error:{e}'
+
+        elif 'abs' in display:
+            try:
+                number = display.replace('abs','').strip()
+                display = str(abs_fun(number))
+            except ValueError as e:
+                display = f'Error:{e}'
 
         return render(request, 'index.html', {'display': display})
 
